@@ -10,8 +10,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install opam
-        run: |
-          sudo apt install opam
+        run: sudo apt install opam; opam init
+
+      - name: Create opam switch
           opam switch create 4.14.2
 
       - name: Run script.sh
