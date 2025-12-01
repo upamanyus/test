@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install opam
         run: sudo apt install opam; opam init
@@ -27,20 +27,22 @@ jobs:
     strategy:
       matrix:
         coq_version:
-        - dev
-        - 9.1
-        ocaml_version: ['default']
+          - dev
+          - 9.1
+        ocaml_version: ["default"]
       max-parallel: 4
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
       - uses: coq-community/docker-coq-action@v1
         with:
           coq_version: ${{ matrix.coq_version }}
           ocaml_version: "default"
-          opam_file: 'x.opam'
+          opam_file: "x.opam"
           custom_script: |
+            sudo apt-get update -y
+            sudo apt-get upgrade -y
             opam config list
             opam repo list
             opam pin add -vv -n -y -k path $PACKAGE $WORKDIR
