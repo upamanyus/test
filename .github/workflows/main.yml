@@ -10,7 +10,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install opam
-        run: sudo apt install opam; opam init; opam switch create 4.14.2
+        run: |
+          sudo apt install opam
+          opam init
+          opam switch create 4.14.2
 
       - name: Run script.sh
         run: bash ./script.sh
@@ -35,7 +38,7 @@ jobs:
           ocaml_version: "default"
           opam_file: 'x.opam'
           custom_script: |
-              opam config list
-              opam repo list
-              opam pin add -n -y -k path $PACKAGE $WORKDIR
-              opam pin add -n -k path $PACKAGE $WORKDIR # maybe this'll cause CI failure if the first thing errors?
+            opam config list
+            opam repo list
+            opam pin add -n -y -k path $PACKAGE $WORKDIR
+            opam pin add -n -k path $PACKAGE $WORKDIR # maybe this'll cause CI failure if the first thing errors?
