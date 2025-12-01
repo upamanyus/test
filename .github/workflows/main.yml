@@ -12,7 +12,6 @@ jobs:
       - name: Install opam
         run: |
           sudo apt install opam
-          opam init
           opam switch create 4.14.2
 
       - name: Run script.sh
