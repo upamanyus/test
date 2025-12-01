@@ -8,6 +8,6 @@ depends: [
 ]
 
 pin-depends: [
-  ["rocq-stdpp.dev"          "git+https://gitlab.mpi-sws.org/iris/stdpp#187909f0c15b7c8"]
-  ["rocq-iris.dev"           "git+https://gitlab.mpi-sws.org/iris/iris#fde0f86992"]
+  ["rocq-stdpp.dev"          "git+https://gitlab.mpi-sws.org/iris/stdpp.git#187909f0c15b7c8"]
+  ["rocq-iris.dev"           "git+https://gitlab.mpi-sws.org/iris/iris.git#fde0f86992"]
 ]
