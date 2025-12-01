@@ -3,7 +3,7 @@ name: Test
 on: [push, workflow_dispatch]
 
 jobs:
-  run-script-job:
+  run-local:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -21,14 +21,22 @@ jobs:
       - name: Run manual.sh
         run: bash ./manual.sh
 
-  run-rocq-docker-job:
+  run-rocq:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        coq_version:
+        - dev
+        - 9.1
+        ocaml_version: ['default']
+      max-parallel: 4
 
     steps:
       - uses: actions/checkout@v3
       - uses: coq-community/docker-coq-action@v1
         with:
-          coq_version: dev
+          coq_version: ${{ matrix.coq_version }}
           ocaml_version: "default"
           opam_file: 'x.opam'
           custom_script: |
