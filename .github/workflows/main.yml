@@ -34,14 +34,7 @@ jobs:
           coq_version: ${{ matrix.coq_version }}
           ocaml_version: "default"
           opam_file: 'x.opam'
-          install: |
-            startGroup Install dependencies
-              # sudo apt-get update -y
-              # sudo apt-get install -y sqlite3
+          custom_script: |
+              opam config list
+              opam repo list
               opam pin add -n -y -k path $PACKAGE $WORKDIR
-              # opam install -j 4 -y --deps-only $PACKAGE
-            endGroup
-          script: |
-            startGroup Build
-            endGroup
-          uninstall:
