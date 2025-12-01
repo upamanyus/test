@@ -17,3 +17,32 @@ jobs:
 
       - name: Run manual.sh
         run: bash ./manual.sh
+
+  run-rocq-docker-job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        coq_version:
+        - dev
+        ocaml_version: ['default']
+      max-parallel: 4
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: coq-community/docker-coq-action@v1
+          with:
+          coq_version: ${{ matrix.coq_version }}
+          ocaml_version: "default"
+          opam_file: 'x.opam'
+          install: |
+            startGroup Install dependencies
+              sudo apt-get update -y
+              sudo apt-get install -y sqlite3
+              opam pin add -n -y -k path $PACKAGE $WORKDIR
+              opam install -j 4 -y --deps-only $PACKAGE
+            endGroup
+          script: |
+            startGroup Build
+              make -j4 -k ci
+            endGroup
+          uninstall:
