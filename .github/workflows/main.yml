@@ -12,5 +12,8 @@ jobs:
       - name: Install opam
         run: sudo apt install opam; opam init
 
-      - name: Run my shell script
+      - name: Run script.sh
         run: bash ./script.sh
+
+      - name: Run manual.sh
+        run: bash ./manual.sh
