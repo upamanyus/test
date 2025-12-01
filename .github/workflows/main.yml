@@ -34,5 +34,5 @@ jobs:
           custom_script: |
             opam config list
             opam repo list
-            opam pin add -n -y -k path $PACKAGE $WORKDIR
+            opam pin add -vv -n -y -k path $PACKAGE $WORKDIR
             opam pin add -n -k path $PACKAGE $WORKDIR # maybe this'll cause CI failure if the first thing errors?
