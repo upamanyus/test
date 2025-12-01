@@ -45,5 +45,5 @@ jobs:
             sudo apt-get upgrade -y
             opam config list
             opam repo list
-            opam pin add -vv -n -y -k path $PACKAGE $WORKDIR
-            opam pin add -n -k path $PACKAGE $WORKDIR # maybe this'll cause CI failure if the first thing errors?
+            opam pin -j1 add -vv -n -y -k path $PACKAGE $WORKDIR
+            opam pin -j1 add -n -k path $PACKAGE $WORKDIR # maybe this'll cause CI failure if the first thing errors?
